@@ -1,24 +1,28 @@
 #include <iostream>
 
-// Homework 5 — Your Name
-// CIS 5 Week 05 · Rule engine lite
+// Lab 5 - Andy Munoz
+// CIS Week 5 - Eligibility Check
 
 int main() {
-  int score = 0;
-  int attendance = 0;
+	int age = 0;
+	double gpa = 0.0;
+	std::cout << "Age? ";
+	std::cin >> age;
+	std::cout << "GPA? ";
+	std::cin >> gpa;
 
-  // TODO: cout question, then cin, for score and for attendance
+	bool adult = age >= 18;
+	bool honors = gpa >= 3.5;
 
-  // Edge values: (list just-below / exactly-on / just-above for each threshold here)
-
-  // TODO: invalid branch FIRST — out-of-range input gets its own message
-  //   if (score < 0 || score > 100) { ... }
-
-  // TODO: else if ( ... && ... ) { ... }   best outcome
-  // TODO: else if ( ... ) { ... }          middle outcome
-  // TODO: else { ... }                     the rest
-
-  // TODO: two comments that explain a choice (why invalid first, why && not ||, why >= not >)
-
-  return 0;
+	if (adult && honors) {
+		std::cout << "You are eligible for the honors program!\n";
+	}
+	else if (adult || honors) {
+		std::cout << "Halfway there. One requirement met.\n";
+	}
+	else {
+		std::cout << "Not eligible.\n";
+	}
+	//test agees 17 / 18 with 3.8 and 3.4 / 3.5 with age 20
+	return 0;
 }
