@@ -1,28 +1,49 @@
 #include <iostream>
 
-// Lab 5 - Andy Munoz
-// CIS Week 5 - Eligibility Check
+// Homework 5 - Andy Munoz
+// CIS 5 Week 05 - Rule Engine Lite
 
 int main() {
-	int age = 0;
-	double gpa = 0.0;
-	std::cout << "Age? ";
-	std::cin >> age;
-	std::cout << "GPA? ";
-	std::cin >> gpa;
+	int score = 0;
+	int attendance = 0;
+	std::cout << "Score? ";
+	std::cin >> score;
+	std::cout << "Attendance? ";
+	std::cin >> attendance;
 
-	bool adult = age >= 18;
-	bool honors = gpa >= 3.5;
+	bool pass = score >= 60;
+	bool attended = attendance >= 50;
+	
+	// >= Used for these because equal to 50 or greater is acceptable
+	// If > was used, 50 would not be an acceptable score
 
-	if (adult && honors) {
-		std::cout << "You are eligible for the honors program!\n";
+	// Edge Values (Score, Attendence):
+	// Just below = (59, 49)
+	// Exactly on = (60, 50)
+	// Just above = (61, 51)
+
+	if (score < 0 || score > 100) {
+		std::cout << "Error.\n";
+
+		// < used here instead of <= because only values below 0 are invalid, 0 itself is valid
+		// Invalid condition comes first in order to eliminate errors as soon as possible, protecting the rest of the code
+
 	}
-	else if (adult || honors) {
-		std::cout << "Halfway there. One requirement met.\n";
+	else if (pass && attended) {
+		std::cout << "Pass.\n";
+
+		// && used because strictly both are required for pass, not just at least one	
+
+	}
+	else if (!pass && attended) {
+		std::cout << "Warn, score too low.\n";
+	}
+	else if (pass && !attended) {
+		std::cout << "Warn, attendance too low.\n";
 	}
 	else {
-		std::cout << "Not eligible.\n";
+		std::cout << "Fail.\n";
 	}
-	//test agees 17 / 18 with 3.8 and 3.4 / 3.5 with age 20
+	
 	return 0;
 }
